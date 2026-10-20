@@ -26,6 +26,8 @@ func _exit_tree() -> void:
 func _ready():
 	if Engine.is_editor_hint():
 		return
+	
+	modulate = Color(1.0, 1.0, 1.0, 0.0)
 
 func _input(event: InputEvent) -> void:
 	pass
