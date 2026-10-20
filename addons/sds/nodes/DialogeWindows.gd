@@ -24,7 +24,8 @@ func _exit_tree() -> void:
 	pass
 
 func _ready():
-	pass
+	if Engine.is_editor_hint():
+		return
 
 func _input(event: InputEvent) -> void:
 	pass
