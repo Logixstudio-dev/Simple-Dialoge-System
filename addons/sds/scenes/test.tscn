@@ -6,4 +6,7 @@
 
 [node name="DialogeWindows" type="Node2D" parent="." unique_id=1552845684]
 script = ExtResource("1_yvy56")
+is_animate_window = null
+is_animate_text = null
+is_animate_name = null
 metadata/_custom_type_script = "uid://5bwr3l6v2trs"

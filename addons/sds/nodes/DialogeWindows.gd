@@ -16,6 +16,7 @@ extends Node2D
 @export var is_animate_window : bool
 @export var is_animate_text : bool
 @export var is_animate_name : bool
+
 func _enter_tree() -> void:
 	pass
 
