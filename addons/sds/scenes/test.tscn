@@ -1,9 +1,3 @@
 [gd_scene format=3 uid="uid://bcuxbi1fvsb75"]
 
-[ext_resource type="Script" uid="uid://5bwr3l6v2trs" path="res://addons/sds/nodes/DialogeWindows.gd" id="1_yvy56"]
-
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1611899874]
-
-[node name="DialogeWindows" type="Node2D" parent="." unique_id=1552845684]
-script = ExtResource("1_yvy56")
-metadata/_custom_type_script = "uid://5bwr3l6v2trs"
