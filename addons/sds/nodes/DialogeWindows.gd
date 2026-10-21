@@ -46,13 +46,20 @@ func openWindow():
 	if is_animate_window:
 		var x = get_tree().create_tween()
 		x.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), time_opening).set_trans(Tween.TRANS_QUAD)
-		
+	else:
+		modulate.a = 1
 
 func closeWindow():
-	pass
+	if is_animate_window:
+		var x = get_tree().create_tween()
+		x.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.0), time_opening).set_trans(Tween.TRANS_QUAD)
+	else:
+		modulate.a = 0
 
-func start():
-	pass
+func start(dialoge: String):
+	if not FileAccess.file_exists(dialoge):
+		print("ERROR")
+		return
 
 func processDialoge():
 	pass
