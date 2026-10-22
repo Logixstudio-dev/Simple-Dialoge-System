@@ -50,6 +50,7 @@ func openWindow():
 		x.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), time_opening).set_trans(Tween.TRANS_QUAD)
 	else:
 		modulate.a = 1
+	is_open = true
 
 func closeWindow():
 	if is_animate_window:
@@ -57,7 +58,7 @@ func closeWindow():
 		x.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.0), time_opening).set_trans(Tween.TRANS_QUAD)
 	else:
 		modulate.a = 0
-	is_open = true
+	is_open = false
 
 func start(dialoge: String):
 	if not FileAccess.file_exists(dialoge):
@@ -71,6 +72,25 @@ func start(dialoge: String):
 	
 	if is_open:
 		processDialoge(d)
+	
+	return 0
 
 func processDialoge(data: Dictionary):
-	pass
+	var arr = data["dialogue"]
+	var res = []
+	
+	for i in arr:
+		var this = i
+		
+		if i.has("text"):
+			Text.text = i["text"]
+		else:
+			return 1
+		if i.has("name"):
+			Name.text = i["name"]
+		else:
+			return 2
+		if i.has("avatar"):
+			avatar.texture = load(i["name"])
+		else:
+			return 3
