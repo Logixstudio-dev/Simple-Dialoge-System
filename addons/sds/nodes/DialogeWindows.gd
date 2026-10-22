@@ -61,11 +61,14 @@ func closeWindow():
 
 func start(dialoge: String):
 	if not FileAccess.file_exists(dialoge):
-		print("ERROR")
+		print("ERROR: not file from dialogue")
 		return
 	
 	var f = FileAccess.open(dialoge, FileAccess.READ)
 	var d = JSON.parse_string(f.get_as_text())
+	if d == {}:
+		print("ERROR: dialogue is null")
+		return
 	
 	openWindow()
 	
