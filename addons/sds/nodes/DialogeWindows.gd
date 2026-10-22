@@ -19,9 +19,11 @@ extends Node2D
 @export var KeyForNext : InputEventAction
 @export var time_opening : float
 
+var is_open = false
+
 signal pressed_key_for_next
 signal dialoge_finished
-signal is_open
+
 
 func _enter_tree() -> void:
 	pass
@@ -55,11 +57,20 @@ func closeWindow():
 		x.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.0), time_opening).set_trans(Tween.TRANS_QUAD)
 	else:
 		modulate.a = 0
+	is_open = true
 
 func start(dialoge: String):
 	if not FileAccess.file_exists(dialoge):
 		print("ERROR")
 		return
+	
+	var f = FileAccess.open(dialoge, FileAccess.READ)
+	var d = JSON.parse_string(f.get_as_text())
+	
+	openWindow()
+	
+	if is_open:
+		processDialoge(d)
 
-func processDialoge():
+func processDialoge(data: Dictionary):
 	pass
