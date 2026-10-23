@@ -9,6 +9,7 @@ extends Node2D
 @export var Name : Label
 @export var avatar : Sprite2D
 @export var Choices : Container
+@export var ButtonScene : PackedScene
 @export_category("music")
 @export var textMusic : AudioStream
 @export var AvatarMusic : AudioStream
@@ -80,7 +81,6 @@ func processDialoge(data: Dictionary):
 	var res = []
 	
 	for i in arr:
-		var this = i
 		
 		if i.has("text"):
 			Text.text = i["text"]
@@ -94,3 +94,19 @@ func processDialoge(data: Dictionary):
 			avatar.texture = load(i["name"])
 		else:
 			return 3
+		if i.has("choices"):
+			var c = i["choices"]
+			for j in c:
+				var s = ButtonScene.instantiate()
+				s.text = j["text"]
+				s.connect("is_pressed", pressButton())
+				Choices.add_child(s)
+		else:
+			return 4
+	while true:
+		await pressed_key_for_next
+		for x in Choices.get_children():
+			x.queue_free()
+
+func pressButton():
+	pass
